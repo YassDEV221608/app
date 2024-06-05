@@ -1,0 +1,307 @@
+import React, { useState } from 'react';
+import './FormComponent.css';
+
+const FormComponent = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [tel, setTel] = useState('');
+  const [addr, setAddr] = useState('');
+  const [exper, setExper] = useState('');
+  const [framework, setFramework] = useState('');
+  const [message, setMessage] = useState('');
+  const [educationList, setEducationList] = useState([{ name: '' }]);
+  
+  const [errors, setErrors] = useState({});
+  const [certificates, setCertificates] = useState([{ addr: '' }]);
+  const [languages, setLanguages] = useState([{ name: '' }]);
+  const [interests, setInterests] = useState([{ name: '' }]);
+  const [skills, setSkills] = useState([{ name: '' }]);
+
+  const validateEmail = (email) => {
+    // Simple email validation
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = {};
+    if (firstName.trim() === '') {
+      errors.firstName = 'Please enter your first name';
+    }
+    if (lastName.trim() === '') {
+      errors.lastName = 'Please enter your last name';
+    }
+    if (!validateEmail(email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+    // Add more validation for other fields if needed
+
+    if (Object.keys(errors).length === 0) {
+      console.log({ firstName, lastName, email, tel, addr, framework, message, educationList });
+      // Redirect to another HTML page
+      window.open('/pdf.pdf', '_blank');
+    } else {
+      setErrors(errors);
+    }
+  };
+
+  
+
+
+
+  
+  
+   
+  
+    
+  
+
+  const handleCertificateChange = (e, index) => {
+    const { value } = e.target;
+    const newCertificates = [...certificates];
+    newCertificates[index].addr = value;
+    setCertificates(newCertificates);
+  };
+
+  const addCertificate = () => {
+    setCertificates([...certificates, { addr: '' }]);
+  };
+
+  const removeCertificate = (index) => {
+    const newCertificates = certificates.filter((_, i) => i !== index);
+    setCertificates(newCertificates);
+  };
+
+  const handleLanguageChange = (e, index) => {
+    const { value } = e.target;
+    const newLanguages = [...languages];
+    newLanguages[index].name = value;
+    setLanguages(newLanguages);
+  };
+
+  const addLanguage = () => {
+    setLanguages([...languages, { name: '' }]);
+  };
+
+  const removeLanguage = (index) => {
+    const newLanguages = languages.filter((_, i) => i !== index);
+    setLanguages(newLanguages);
+  };
+
+  const handleInterestChange = (e, index) => {
+    const { value } = e.target;
+    const newInterests = [...interests];
+    newInterests[index].name = value;
+    setInterests(newInterests);
+  };
+
+  const addInterest = () => {
+    setInterests([...interests, { name: '' }]);
+  };
+
+  const removeInterest = (index) => {
+    const newInterests = interests.filter((_, i) => i !== index);
+    setInterests(newInterests);
+  };
+
+  const handleEducationChange = (e, index) => {
+    const { value } = e.target;
+    const newEducationList = [...educationList];
+    newEducationList[index].name = value;
+    setEducationList(newEducationList);
+  };
+
+  const addEducation = () => {
+    setEducationList([...educationList, { name: '' }]);
+  };
+
+  const removeEducation = (index) => {
+    const newEducationList = educationList.filter((_, i) => i !== index);
+    setEducationList(newEducationList);
+  };
+
+  const handleSkillChange = (e, index) => {
+    const { value } = e.target;
+    const newSkills = [...skills];
+    newSkills[index].name = value;
+    setSkills(newSkills);
+  };
+
+  const addSkill = () => {
+    setSkills([...skills, { name: '' }]);
+  };
+
+  const removeSkill = (index) => {
+    const newSkills = skills.filter((_, i) => i !== index);
+    setSkills(newSkills);
+  };
+
+  return (
+    <form className="form" onSubmit={handleSubmit}>
+      <div className="personal-info-container">
+        <h2>Entrez vos Informations</h2>
+        <div className="form-group">
+          <label>NOM</label>
+          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+          {errors.firstName && <div className="error">{errors.firstName}</div>}
+        </div>
+        <div className="form-group">
+          <label>Prénom</label>
+          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          {errors.lastName && <div className="error">{errors.lastName}</div>}
+        </div>
+        <div className="form-group">
+          <label>Email</label>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          {errors.email && <div className="error">{errors.email}</div>}
+        </div>
+        <div className="form-group">
+          <label>Numéro Téléphone</label>
+          <input type="tel" value={tel} onChange={(e) => setTel(e.target.value)} />
+          {/* Add validation for telephone if needed */}
+        </div>
+        <div className="form-group">
+          <label>Adresse</label>
+          <input type="text" value={addr} onChange={(e) => setAddr(e.target.value)} />
+          {/* Add validation for address if needed */}
+        </div>
+        <div className="form-group">
+  	      <label>Expérience</label>
+  	      <input type="text" value={exper} onChange={(e) => setExper(e.target.value)} />
+ 
+         </div>
+        
+
+        <div>
+          {certificates.map((certificate, index) => (
+            <div className="form-group" key={index}>
+              <label>Certificats</label>
+              <input
+                type="text"
+                value={certificate.addr}
+                onChange={(e) => handleCertificateChange(e, index)}
+              />
+              <button type="button" onClick={() => removeCertificate(index)}>
+                Supprimer
+              </button>
+            </div>
+          ))}
+          <button type="button" onClick={addCertificate}>
+            + Ajouter un certificat
+          </button>
+          
+        </div>
+        <h3>Langue</h3>
+        <div>
+          {languages.map((language, index) => (
+            <div className="form-group" key={index}>
+              <label>Langue</label>
+              <input
+                type="text"
+                value={language.name}
+                onChange={(e) => handleLanguageChange(e, index)}
+              />
+              <button type="button" onClick={() => removeLanguage(index)}>
+                Supprimer
+              </button>
+            </div>
+          ))}
+          <button type="button" onClick={addLanguage}>
+            + Ajouter une langue
+          </button>
+        </div>
+
+        <h3>Intéret</h3>
+
+        <div>
+          {interests.map((interest, index) => (
+            <div className="form-group" key={index}>
+              <label>Intérêt</label>
+              <input
+                type="text"
+                value={interest.name}
+                onChange={(e) => handleInterestChange(e, index)}
+              />
+              <button type="button" onClick={() => removeInterest(index)}>
+                Supprimer
+              </button>
+            </div>
+          ))}
+          <button type="button" onClick={addInterest}>
+            + Ajouter un intérêt
+          </button>
+        </div>
+
+        <h3>Éducation</h3>
+        <div>
+          {educationList.map((education, index) => (
+            <div className="form-group" key={index}>
+              <label>Éducation</label>
+              <input
+                type="text"
+                value={education.name}
+                onChange={(e) => handleEducationChange(e, index)}
+              />
+              <button type="button" onClick={() => removeEducation(index)}>
+                Supprimer
+              </button>
+            </div>
+          ))}
+          <button type="button" onClick={addEducation}>
+            + Ajouter une éducation
+          </button>
+        </div>
+
+        <h3>Compétences</h3>
+        <div>
+          {skills.map((skill, index) => (
+            <div className="form-group" key={index}>
+              <label>Compétence</label>
+              <input
+                type="text"
+                value={skill.name}
+                onChange={(e) => handleSkillChange(e, index)}
+              />
+              <button type="button" onClick={() => removeSkill(index)}>
+                Supprimer
+              </button>
+            </div>
+          ))}
+          <button type="button" onClick={addSkill}>
+            + Ajouter une compétence
+          </button>
+        </div>
+      
+      
+
+
+        
+
+        
+
+
+
+      </div>
+
+      {/* Add education input and list */}
+
+      <div className="form-group">
+        <label>Année Cycle</label>
+        <select value={framework} onChange={(e) => setFramework(e.target.value)}>
+          <option value="" disabled>Je suis en...</option>
+          <option value="1ere Année">1ere Année</option>
+          <option value="2ere Année">2ere Année</option>
+          <option value="3ere Année">3ere Année</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Message</label>
+        <textarea value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+      </div>
+      <button type="submit">Générer CV</button>
+    </form>
+  );
+};
+
+export default FormComponent;

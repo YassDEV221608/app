@@ -1,0 +1,21 @@
+/* src/index.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('./background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff; /* White text */
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  
+  box-sizing: border-box;
+  padding: 20px;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

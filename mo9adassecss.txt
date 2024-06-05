@@ -1,0 +1,128 @@
+/* src/FormComponent.css */
+body {
+ 
+  color: #fff; /* White text */
+  margin: 0;
+  font-family: Arial, sans-serif;
+  padding: 100px; /* Add padding to the body */
+  background: url('background.jpg') no-repeat center center fixed; /* Add your image path here */
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  height: 100vh;
+  
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 400px;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for readability */
+  padding: 20px;
+  border: 1px solid #fff; /* Match the border style */
+  border-radius: 10px; /* Match the border radius */
+  box-sizing: border-box;
+  margin-top: 50rem;
+  /*transform: translateY(300px);*/
+
+}
+
+.personal-info-container,
+.education-container {
+  margin-bottom: 20px;
+  border: 1px solid #fff; /* White border to match form */
+  border-radius: 10px;
+  padding: 15px; /* Add padding to match form */
+  background: rgba(0, 0, 0, 0.5); /* Match the form's background color */
+  color: #fff; /* White text color */
+  margin-top: 20px;
+  padding-top: 15px;
+}
+
+.personal-info-container h2,
+.education-container h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.education-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+.education-title span {
+  margin-right: 10px;
+}
+
+.education-list {
+  margin-bottom: 15px;
+}
+
+.education-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  color: #fff; /* White text color */
+}
+
+.visibility-icon {
+  cursor: pointer;
+}
+
+.add-education-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.add-education-button:hover {
+  background-color: #0056b3;
+}
